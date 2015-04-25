@@ -16,6 +16,8 @@
 		0561B9611AE3450D0015806B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0561B9601AE3450D0015806B /* Images.xcassets */; };
 		0561B9641AE3450D0015806B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0561B9621AE3450D0015806B /* LaunchScreen.xib */; };
 		0561B9701AE3450D0015806B /* X_plore_by_X_rayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0561B96F1AE3450D0015806B /* X_plore_by_X_rayTests.m */; };
+		05C3385F1AEAEB5B00240228 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C3385E1AEAEB5B00240228 /* CoreDataManager.m */; };
+		05C338621AEB010C00240228 /* PatientModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C338611AEB010C00240228 /* PatientModalViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,10 @@
 		0561B9691AE3450D0015806B /* X-plore by X-rayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "X-plore by X-rayTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0561B96E1AE3450D0015806B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0561B96F1AE3450D0015806B /* X_plore_by_X_rayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = X_plore_by_X_rayTests.m; sourceTree = "<group>"; };
+		05C3385D1AEAEB5B00240228 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		05C3385E1AEAEB5B00240228 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		05C338601AEB010C00240228 /* PatientModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientModalViewController.h; sourceTree = "<group>"; };
+		05C338611AEB010C00240228 /* PatientModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientModalViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,11 +98,15 @@
 				0561B9581AE3450D0015806B /* MasterViewController.m */,
 				0561B95A1AE3450D0015806B /* DetailViewController.h */,
 				0561B95B1AE3450D0015806B /* DetailViewController.m */,
+				05C3385D1AEAEB5B00240228 /* CoreDataManager.h */,
+				05C3385E1AEAEB5B00240228 /* CoreDataManager.m */,
 				0561B95D1AE3450D0015806B /* Main.storyboard */,
 				0561B9601AE3450D0015806B /* Images.xcassets */,
 				0561B9621AE3450D0015806B /* LaunchScreen.xib */,
 				0561B9541AE3450C0015806B /* X_plore_by_X_ray.xcdatamodeld */,
 				0561B94D1AE3450C0015806B /* Supporting Files */,
+				05C338601AEB010C00240228 /* PatientModalViewController.h */,
+				05C338611AEB010C00240228 /* PatientModalViewController.m */,
 			);
 			path = "X-plore by X-ray";
 			sourceTree = "<group>";
@@ -227,6 +237,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05C338621AEB010C00240228 /* PatientModalViewController.m in Sources */,
+				05C3385F1AEAEB5B00240228 /* CoreDataManager.m in Sources */,
 				0561B95C1AE3450D0015806B /* DetailViewController.m in Sources */,
 				0561B9591AE3450D0015806B /* MasterViewController.m in Sources */,
 				0561B9561AE3450C0015806B /* X_plore_by_X_ray.xcdatamodeld in Sources */,
@@ -426,6 +438,7 @@
 				0561B9751AE3450D0015806B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0561B9761AE3450D0015806B /* Build configuration list for PBXNativeTarget "X-plore by X-rayTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +447,7 @@
 				0561B9781AE3450D0015806B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

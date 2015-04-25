@@ -28,7 +28,10 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+//        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"firstName"] description];
+        self.firstName.text = [[self.detailItem valueForKey:@"firstName"] description];
+        self.lastName.text = [[self.detailItem valueForKey:@"lastName"] description];
+        self.regNum.text = [[self.detailItem valueForKey:@"regNum"] description];
     }
 }
 
@@ -36,6 +39,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    if (self.detailItem) {
+        self.detailPatientInfoView.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
