@@ -18,6 +18,9 @@
 		0561B9701AE3450D0015806B /* X_plore_by_X_rayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0561B96F1AE3450D0015806B /* X_plore_by_X_rayTests.m */; };
 		05C3385F1AEAEB5B00240228 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C3385E1AEAEB5B00240228 /* CoreDataManager.m */; };
 		05C338621AEB010C00240228 /* PatientModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C338611AEB010C00240228 /* PatientModalViewController.m */; };
+		05C338651AED9EEC00240228 /* SnapshotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C338641AED9EEC00240228 /* SnapshotCollectionViewCell.m */; };
+		05C338681AEDAFDE00240228 /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C338671AEDAFDE00240228 /* Patient.m */; };
+		05C3386B1AEDAFDF00240228 /* Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C3386A1AEDAFDF00240228 /* Snapshot.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,12 @@
 		05C3385E1AEAEB5B00240228 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		05C338601AEB010C00240228 /* PatientModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientModalViewController.h; sourceTree = "<group>"; };
 		05C338611AEB010C00240228 /* PatientModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientModalViewController.m; sourceTree = "<group>"; };
+		05C338631AED9EEC00240228 /* SnapshotCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotCollectionViewCell.h; sourceTree = "<group>"; };
+		05C338641AED9EEC00240228 /* SnapshotCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapshotCollectionViewCell.m; sourceTree = "<group>"; };
+		05C338661AEDAFDE00240228 /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
+		05C338671AEDAFDE00240228 /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
+		05C338691AEDAFDF00240228 /* Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snapshot.h; sourceTree = "<group>"; };
+		05C3386A1AEDAFDF00240228 /* Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Snapshot.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,9 +113,15 @@
 				0561B9601AE3450D0015806B /* Images.xcassets */,
 				0561B9621AE3450D0015806B /* LaunchScreen.xib */,
 				0561B9541AE3450C0015806B /* X_plore_by_X_ray.xcdatamodeld */,
+				05C338691AEDAFDF00240228 /* Snapshot.h */,
+				05C3386A1AEDAFDF00240228 /* Snapshot.m */,
+				05C338661AEDAFDE00240228 /* Patient.h */,
+				05C338671AEDAFDE00240228 /* Patient.m */,
 				0561B94D1AE3450C0015806B /* Supporting Files */,
 				05C338601AEB010C00240228 /* PatientModalViewController.h */,
 				05C338611AEB010C00240228 /* PatientModalViewController.m */,
+				05C338631AED9EEC00240228 /* SnapshotCollectionViewCell.h */,
+				05C338641AED9EEC00240228 /* SnapshotCollectionViewCell.m */,
 			);
 			path = "X-plore by X-ray";
 			sourceTree = "<group>";
@@ -238,11 +253,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				05C338621AEB010C00240228 /* PatientModalViewController.m in Sources */,
+				05C3386B1AEDAFDF00240228 /* Snapshot.m in Sources */,
 				05C3385F1AEAEB5B00240228 /* CoreDataManager.m in Sources */,
 				0561B95C1AE3450D0015806B /* DetailViewController.m in Sources */,
+				05C338681AEDAFDE00240228 /* Patient.m in Sources */,
 				0561B9591AE3450D0015806B /* MasterViewController.m in Sources */,
 				0561B9561AE3450C0015806B /* X_plore_by_X_ray.xcdatamodeld in Sources */,
 				0561B9531AE3450C0015806B /* AppDelegate.m in Sources */,
+				05C338651AED9EEC00240228 /* SnapshotCollectionViewCell.m in Sources */,
 				0561B9501AE3450C0015806B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

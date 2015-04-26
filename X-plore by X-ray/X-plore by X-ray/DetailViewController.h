@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataManager.h"
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
