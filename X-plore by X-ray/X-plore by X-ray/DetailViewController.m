@@ -8,15 +8,21 @@
 
 #import "DetailViewController.h"
 #import "SnapshotCollectionViewCell.h"
-@interface DetailViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+#import "InsertUrlViewController.h"
+#import "Patient.h"
+#import "Snapshot.h"
+
+@interface DetailViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate>
 
 @property (nonatomic) NSManagedObjectContext *context;
+@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 @property (nonatomic) UIImagePickerController *imagePicker;
 @property (nonatomic) UIPopoverController *popover;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic) UIImage *image;
-@property (weak, nonatomic) NSString *imageName;
-@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+@property (nonatomic) NSURL *urlForImage;
 
 @end
 
@@ -32,10 +38,10 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-            
+- (void)setDetailItem:(Patient *)newDetailItem {
+    if (_detailPatient != newDetailItem) {
+        _detailPatient = newDetailItem;
+        
         // Update the view.
         [self configureView];
     }
@@ -43,11 +49,11 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    if (self.detailItem) {
-//        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"firstName"] description];
-        self.firstName.text = [[self.detailItem valueForKey:@"firstName"] description];
-        self.lastName.text = [[self.detailItem valueForKey:@"lastName"] description];
-        self.regNum.text = [[self.detailItem valueForKey:@"regNum"] description];
+    if (self.detailPatient)
+    {
+        self.firstName.text = self.detailPatient.firstName;
+        self.lastName.text = self.detailPatient.lastName;
+        self.regNum.text = [self.detailPatient.regNum stringValue];
     }
 }
 
@@ -55,7 +61,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
-    if (self.detailItem) {
+    if (self.detailPatient) {
         self.detailPatientInfoView.hidden = NO;
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addImage:)];
@@ -91,25 +97,56 @@
 
 - (void)addImage:(id)sender
 {
-    [self.popover presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Insert image" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add from album", @"Add from Url", nil];
+    
+    [actionSheet showFromBarButtonItem:sender animated:YES];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (0 == buttonIndex)
+    {
+        [self.popover presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
+    else if (1 == buttonIndex)
+    {
+        [self performSegueWithIdentifier:@"URL for image" sender:self.detailPatient];
+    }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSLog(@"%@", info);
-    self.image = [info valueForKey:@"UIImagePickerControllerOriginalImage"];
-    self.imageName = @"IMAGE";
-    NSManagedObject *newObject = [NSEntityDescription insertNewObjectForEntityForName:[[self.fetchedResultsController fetchRequest].entity name] inManagedObjectContext:self.context];
-    [newObject setValue:@"Image" forKey:@"fileName"];
-    [newObject setValue:[NSDate date] forKey:@"dateAdded"];
-    //Save the context.
-    NSError *error = nil;
-    if (![self.context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+    UIImage *image = [info valueForKey:@"UIImagePickerControllerOriginalImage"];
+    Snapshot *snapshot = [[Snapshot alloc] initWithEntity:[[self.fetchedResultsController fetchRequest] entity] insertIntoManagedObjectContext:self.context];
+    snapshot.dateAdded = [NSDate date];
+    snapshot.fileName = [NSString stringWithFormat:@"%@_snapshot_%@", self.detailPatient.regNum, snapshot.dateAdded];
+    
+    [self.detailPatient addSnapshotsObject:snapshot];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSData *data = UIImageJPEGRepresentation(image, 100);
+    
+    NSString *filePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:snapshot.fileName] stringByAppendingPathExtension:@"png"];
+    if([fileManager createFileAtPath:filePath contents:data attributes:nil])
+    {
+        //Save the context.
+        NSError *error = nil;
+        if (![self.context save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+
+    } else {
+        NSLog(@"Image file did not saved");
     }
+    
+//    CoreDataManager 
+    
+    
     [self.popover dismissPopoverAnimated:YES];
 }
 
@@ -123,11 +160,19 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Snapshot *snapshot = [self.fetchedResultsController objectAtIndexPath:indexPath];
     SnapshotCollectionViewCell *cell = (SnapshotCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"snapshot" forIndexPath:indexPath];
-    //UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
-    //[cell addSubview:imageView];
-    cell.imageNameLabel.text = [object valueForKey:@"fileName"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *destinationUrl = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    destinationUrl = [destinationUrl URLByAppendingPathComponent:snapshot.fileName];
+    destinationUrl = [destinationUrl URLByAppendingPathExtension:@"png"];
+    
+    NSData *data = [NSData dataWithContentsOfURL:destinationUrl];
+    
+    cell.imageView.image = [[UIImage alloc] initWithData:data];
+    [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
+    //cell.imageNameLabel.text = snapshot.fileName;
     return cell;
 }
 
@@ -147,8 +192,8 @@
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
-    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"owner.regNum = %@", self.regNum];
-    //[fetchRequest setPredicate:predicate];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"owner == %@", self.detailPatient];
+    [fetchRequest setPredicate:predicate];
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateAdded" ascending:NO];
@@ -221,6 +266,16 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
+    [self.collectionView reloadData];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([@"URL for image" isEqualToString:[segue identifier]])
+    {
+        InsertUrlViewController *controller = segue.destinationViewController;
+        controller.delegate = self;
+        [self.splitViewController.navigationController presentViewController:controller animated:YES completion:nil];
+    }
+}
 @end

@@ -21,6 +21,7 @@
 		05C338651AED9EEC00240228 /* SnapshotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C338641AED9EEC00240228 /* SnapshotCollectionViewCell.m */; };
 		05C338681AEDAFDE00240228 /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C338671AEDAFDE00240228 /* Patient.m */; };
 		05C3386B1AEDAFDF00240228 /* Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C3386A1AEDAFDF00240228 /* Snapshot.m */; };
+		05C3386E1AEE9D3100240228 /* InsertUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C3386D1AEE9D3100240228 /* InsertUrlViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		05C338671AEDAFDE00240228 /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
 		05C338691AEDAFDF00240228 /* Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snapshot.h; sourceTree = "<group>"; };
 		05C3386A1AEDAFDF00240228 /* Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Snapshot.m; sourceTree = "<group>"; };
+		05C3386C1AEE9D3100240228 /* InsertUrlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertUrlViewController.h; sourceTree = "<group>"; };
+		05C3386D1AEE9D3100240228 /* InsertUrlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertUrlViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				05C338611AEB010C00240228 /* PatientModalViewController.m */,
 				05C338631AED9EEC00240228 /* SnapshotCollectionViewCell.h */,
 				05C338641AED9EEC00240228 /* SnapshotCollectionViewCell.m */,
+				05C3386C1AEE9D3100240228 /* InsertUrlViewController.h */,
+				05C3386D1AEE9D3100240228 /* InsertUrlViewController.m */,
 			);
 			path = "X-plore by X-ray";
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			files = (
 				05C338621AEB010C00240228 /* PatientModalViewController.m in Sources */,
 				05C3386B1AEDAFDF00240228 /* Snapshot.m in Sources */,
+				05C3386E1AEE9D3100240228 /* InsertUrlViewController.m in Sources */,
 				05C3385F1AEAEB5B00240228 /* CoreDataManager.m in Sources */,
 				0561B95C1AE3450D0015806B /* DetailViewController.m in Sources */,
 				05C338681AEDAFDE00240228 /* Patient.m in Sources */,

@@ -89,21 +89,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjW-LF-Xg6">
-                                                    <rect key="frame" x="15" y="0.0" width="120" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="imageName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2i-dt-lzF">
-                                                    <rect key="frame" x="8" y="128" width="134" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.025669429220000001" blue="0.012318815469999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <size key="customSize" width="150" height="150"/>
                                         <connections>
-                                            <outlet property="imageNameLabel" destination="K2i-dt-lzF" id="rDQ-8e-e5Z"/>
                                             <outlet property="imageView" destination="fjW-LF-Xg6" id="5P1-ba-sG1"/>
                                         </connections>
                                     </collectionViewCell>
@@ -137,11 +130,66 @@
                         <outlet property="firstName" destination="F2p-T6-d45" id="STU-JB-g3B"/>
                         <outlet property="lastName" destination="sJK-JR-nox" id="Goe-GV-pbW"/>
                         <outlet property="regNum" destination="vS9-bw-s4B" id="QVa-Ch-bul"/>
+                        <segue destination="boc-hd-21d" kind="presentation" identifier="URL for image" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="ZNv-C8-H8p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="694" y="120"/>
+        </scene>
+        <!--Insert Url View Controller-->
+        <scene sceneID="S81-jQ-gNh">
+            <objects>
+                <viewController modalPresentationStyle="formSheet" id="boc-hd-21d" customClass="InsertUrlViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sVg-5j-wVh"/>
+                        <viewControllerLayoutGuide type="bottom" id="wdc-Ee-7a0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uIg-0e-Mvp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Url" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-Tt-S7Q">
+                                <rect key="frame" x="266" y="152" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cb3-4n-d9B">
+                                <rect key="frame" x="156" y="371" width="51" height="22"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="boc-hd-21d" eventType="touchUpInside" id="8hv-XI-ZTd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z1-T7-hmq">
+                                <rect key="frame" x="395" y="367" width="37" height="30"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="donePressed:" destination="boc-hd-21d" eventType="touchUpInside" id="XJG-pW-vKa"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://www.southlakepediatrics.com/image/home/xray%20hand.JPG" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o4w-Gj-oGN">
+                                <rect key="frame" x="116" y="232" width="368" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="urlTextField" destination="o4w-Gj-oGN" id="3Cf-8o-VZL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S6A-8B-ASU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1423" y="120"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

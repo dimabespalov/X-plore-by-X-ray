@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataManager.h"
 
+@class Patient;
 @interface DetailViewController : UIViewController <NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) Patient *detailPatient;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *regNum;
 @property (weak, nonatomic) IBOutlet UILabel *lastName;

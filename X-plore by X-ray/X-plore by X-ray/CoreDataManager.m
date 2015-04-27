@@ -32,10 +32,6 @@ static CoreDataManager *sDefaultCoreDataManager;
 
 #pragma mark - Core Data stack
 
-//@synthesize managedObjectContext = _managedObjectContext;
-//@synthesize managedObjectModel = _managedObjectModel;
-//@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
 - (NSURL *)applicationDocumentsDirectory {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.bionic-univercity.X_plore_by_X_ray" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];

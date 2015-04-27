@@ -13,8 +13,8 @@
 
 @interface Snapshot : NSManagedObject
 
-@property (nonatomic, retain) NSString * fileName;
-@property (nonatomic, retain) NSDate * dateAdded;
+@property (nonatomic, retain) NSString *fileName;
+@property (nonatomic, retain) NSDate *dateAdded;
 @property (nonatomic, retain) Patient *owner;
 
 @end

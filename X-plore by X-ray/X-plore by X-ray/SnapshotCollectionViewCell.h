@@ -10,7 +10,6 @@
 
 @interface SnapshotCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *imageNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
