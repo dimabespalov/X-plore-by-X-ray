@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import "SnapshotCollectionViewCell.h"
 #import "InsertUrlViewController.h"
+#import "ImageProcessingViewController.h"
 #import "Patient.h"
 #import "Snapshot.h"
 
@@ -172,8 +173,26 @@
     
     cell.imageView.image = [[UIImage alloc] initWithData:data];
     [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
+    
+    cell.userInteractionEnabled = YES;
     //cell.imageNameLabel.text = snapshot.fileName;
     return cell;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
+    return YES;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
+    NSLog(@"action");
 }
 
 #pragma mark - Fetched results controller
@@ -274,8 +293,14 @@
     if ([@"URL for image" isEqualToString:[segue identifier]])
     {
         InsertUrlViewController *controller = segue.destinationViewController;
-        controller.delegate = self;
         [self.splitViewController.navigationController presentViewController:controller animated:YES completion:nil];
+    }
+    else if ([@"processImage" isEqualToString:[segue identifier]])
+    {
+        ImageProcessingViewController *imageProcessingController = (ImageProcessingViewController *)[[segue destinationViewController] topViewController];
+        imageProcessingController.image = ((SnapshotCollectionViewCell *)sender).imageView.image;
+        [self.splitViewController.navigationController presentViewController:imageProcessingController animated:YES completion:nil];
+        
     }
 }
 @end

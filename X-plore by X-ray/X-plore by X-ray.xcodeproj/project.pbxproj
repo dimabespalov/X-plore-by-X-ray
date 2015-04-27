@@ -22,6 +22,7 @@
 		05C338681AEDAFDE00240228 /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C338671AEDAFDE00240228 /* Patient.m */; };
 		05C3386B1AEDAFDF00240228 /* Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C3386A1AEDAFDF00240228 /* Snapshot.m */; };
 		05C3386E1AEE9D3100240228 /* InsertUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C3386D1AEE9D3100240228 /* InsertUrlViewController.m */; };
+		05C338711AEEA9A600240228 /* ImageProcessingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C338701AEEA9A600240228 /* ImageProcessingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		05C3386A1AEDAFDF00240228 /* Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Snapshot.m; sourceTree = "<group>"; };
 		05C3386C1AEE9D3100240228 /* InsertUrlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertUrlViewController.h; sourceTree = "<group>"; };
 		05C3386D1AEE9D3100240228 /* InsertUrlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertUrlViewController.m; sourceTree = "<group>"; };
+		05C3386F1AEEA9A600240228 /* ImageProcessingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessingViewController.h; sourceTree = "<group>"; };
+		05C338701AEEA9A600240228 /* ImageProcessingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcessingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 				05C338641AED9EEC00240228 /* SnapshotCollectionViewCell.m */,
 				05C3386C1AEE9D3100240228 /* InsertUrlViewController.h */,
 				05C3386D1AEE9D3100240228 /* InsertUrlViewController.m */,
+				05C3386F1AEEA9A600240228 /* ImageProcessingViewController.h */,
+				05C338701AEEA9A600240228 /* ImageProcessingViewController.m */,
 			);
 			path = "X-plore by X-ray";
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				05C3386E1AEE9D3100240228 /* InsertUrlViewController.m in Sources */,
 				05C3385F1AEAEB5B00240228 /* CoreDataManager.m in Sources */,
 				0561B95C1AE3450D0015806B /* DetailViewController.m in Sources */,
+				05C338711AEEA9A600240228 /* ImageProcessingViewController.m in Sources */,
 				05C338681AEDAFDE00240228 /* Patient.m in Sources */,
 				0561B9591AE3450D0015806B /* MasterViewController.m in Sources */,
 				0561B9561AE3450C0015806B /* X_plore_by_X_ray.xcdatamodeld in Sources */,
