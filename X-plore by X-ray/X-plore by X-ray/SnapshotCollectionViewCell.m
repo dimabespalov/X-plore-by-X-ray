@@ -8,6 +8,12 @@
 
 #import "SnapshotCollectionViewCell.h"
 
+@interface SnapshotCollectionViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+
+@end
+
 @implementation SnapshotCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame

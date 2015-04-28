@@ -19,5 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UIView *detailPatientInfoView;
 
+-(void)downloadImage:(NSString *)urlForImage;
+
 @end
 

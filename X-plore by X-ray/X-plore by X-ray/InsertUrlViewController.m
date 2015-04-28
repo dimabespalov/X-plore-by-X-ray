@@ -28,7 +28,7 @@
 
 - (IBAction)donePressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        [self.delegate performSelectorInBackground:@selector(downloadImage:) withObject:self.urlTextField.text];
     }];
 }
 

@@ -120,6 +120,15 @@
 {
     NSLog(@"%@", info);
     UIImage *image = [info valueForKey:@"UIImagePickerControllerOriginalImage"];
+    [self performSelectorInBackground:@selector(saveImage:) withObject:image];
+//    CoreDataManager 
+    
+    
+    [self.popover dismissPopoverAnimated:YES];
+}
+
+- (void)saveImage:(UIImage *)image
+{
     Snapshot *snapshot = [[Snapshot alloc] initWithEntity:[[self.fetchedResultsController fetchRequest] entity] insertIntoManagedObjectContext:self.context];
     snapshot.dateAdded = [NSDate date];
     snapshot.fileName = [NSString stringWithFormat:@"%@_snapshot_%@", self.detailPatient.regNum, snapshot.dateAdded];
@@ -140,17 +149,11 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-
+        
     } else {
         NSLog(@"Image file did not saved");
     }
-    
-//    CoreDataManager 
-    
-    
-    [self.popover dismissPopoverAnimated:YES];
 }
-
 #pragma mark - Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -179,6 +182,10 @@
     return cell;
 }
 
+- (IBAction)deleteCell:(id)sender {
+    NSLog(@"%@", sender);
+}
+
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
@@ -187,12 +194,25 @@
     return YES;
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
-
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    return YES;
+//}
 - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
     NSLog(@"action");
+}
+
+#pragma mark - Download Image
+- (void)downloadImage:(NSString *)urlForImage
+{
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithURL:[NSURL URLWithString: urlForImage] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (nil == error)
+        {
+            UIImage *image = [UIImage imageWithData:data];
+            [self performSelectorInBackground:@selector(saveImage:) withObject:image];
+        }
+    }];
+    [task resume];
 }
 
 #pragma mark - Fetched results controller
@@ -293,6 +313,7 @@
     if ([@"URL for image" isEqualToString:[segue identifier]])
     {
         InsertUrlViewController *controller = segue.destinationViewController;
+        controller.delegate = self;
         [self.splitViewController.navigationController presentViewController:controller animated:YES completion:nil];
     }
     else if ([@"processImage" isEqualToString:[segue identifier]])

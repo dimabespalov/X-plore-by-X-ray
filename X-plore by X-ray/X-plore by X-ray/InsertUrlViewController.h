@@ -10,6 +10,6 @@
 #import "DetailViewController.h"
 @interface InsertUrlViewController : UIViewController
 
-@property (nonatomic) DetailViewController *parentController;
+@property (nonatomic) DetailViewController *delegate;
 
 @end
